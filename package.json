@@ -26,6 +26,14 @@
   ],
   "author": "Pegasus Heavy Industries LLC",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pegasusheavy/eslint-typescript-access.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pegasusheavy/eslint-typescript-access/issues"
+  },
+  "homepage": "https://pegasusheavy.github.io/eslint-typescript-access/",
   "packageManager": "pnpm@10.20.0",
   "peerDependencies": {
     "@typescript-eslint/utils": "^8.0.0",
