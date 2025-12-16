@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@pegasusheavy/eslint-typescript-access</title>
+    <meta
+      name="description"
+      content="ESLint plugin that enforces explicit access modifiers and accessibility ordering on TypeScript class members"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Space Grotesk", "system-ui", "sans-serif"],
+              mono: ["JetBrains Mono", "monospace"],
+            },
+            colors: {
+              midnight: "#0f172a",
+              electric: "#6366f1",
+              cyan: "#22d3ee",
+              emerald: "#10b981",
+              amber: "#f59e0b",
+              rose: "#f43f5e",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .gradient-text {
+        background: linear-gradient(135deg, #6366f1 0%, #22d3ee 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .code-block {
+        background: linear-gradient(
+          135deg,
+          rgba(99, 102, 241, 0.1) 0%,
+          rgba(34, 211, 238, 0.05) 100%
+        );
+        border: 1px solid rgba(99, 102, 241, 0.2);
+      }
+      .glow {
+        box-shadow:
+          0 0 60px rgba(99, 102, 241, 0.3),
+          0 0 100px rgba(34, 211, 238, 0.1);
+      }
+      .card-hover {
+        transition: all 0.3s ease;
+      }
+      .card-hover:hover {
+        transform: translateY(-4px);
+        box-shadow:
+          0 20px 40px rgba(0, 0, 0, 0.3),
+          0 0 30px rgba(99, 102, 241, 0.2);
+      }
+    </style>
+  </head>
+  <body class="bg-midnight text-gray-100 font-sans antialiased">
+    <!-- Hero Section -->
+    <div class="min-h-screen flex flex-col relative overflow-hidden">
+      <!-- Background decorations -->
+      <div
+        class="absolute top-0 left-1/4 w-96 h-96 bg-electric/10 rounded-full blur-3xl"
+      ></div>
+      <div
+        class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-cyan/10 rounded-full blur-3xl"
+      ></div>
+
+      <!-- Nav -->
+      <nav class="relative z-10 p-6">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+          <div class="flex items-center gap-3">
+            <div
+              class="w-10 h-10 rounded-lg bg-gradient-to-br from-electric to-cyan flex items-center justify-center"
+            >
+              <i class="fa-solid fa-shield-halved text-white"></i>
+            </div>
+            <span class="font-semibold text-lg">typescript-access</span>
+          </div>
+          <div class="flex items-center gap-6">
+            <a
+              href="https://github.com/pegasusheavy/eslint-typescript-access"
+              class="text-gray-400 hover:text-white transition-colors"
+            >
+              <i class="fa-brands fa-github text-2xl"></i>
+            </a>
+            <a
+              href="https://www.npmjs.com/package/@pegasusheavy/eslint-typescript-access"
+              class="text-gray-400 hover:text-white transition-colors"
+            >
+              <i class="fa-brands fa-npm text-2xl"></i>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Hero Content -->
+      <main class="relative z-10 flex-1 flex items-center">
+        <div class="max-w-6xl mx-auto px-6 py-20">
+          <div class="text-center mb-16">
+            <div
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-electric/10 border border-electric/20 text-electric text-sm mb-8"
+            >
+              <i class="fa-solid fa-sparkles"></i>
+              <span>ESLint Plugin for TypeScript</span>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6">
+              <span class="gradient-text">Explicit Access</span><br />
+              <span class="text-white">Modifiers</span>
+            </h1>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-10">
+              Enforce explicit
+              <code
+                class="px-2 py-1 rounded bg-emerald/10 text-emerald font-mono text-lg"
+                >public</code
+              >,
+              <code
+                class="px-2 py-1 rounded bg-amber/10 text-amber font-mono text-lg"
+                >protected</code
+              >, and
+              <code
+                class="px-2 py-1 rounded bg-rose/10 text-rose font-mono text-lg"
+                >private</code
+              >
+              modifiers on all TypeScript class members.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="#installation"
+                class="px-8 py-4 rounded-xl bg-gradient-to-r from-electric to-cyan text-white font-semibold hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+              >
+                <i class="fa-solid fa-rocket"></i>
+                Get Started
+              </a>
+              <a
+                href="https://github.com/pegasusheavy/eslint-typescript-access"
+                class="px-8 py-4 rounded-xl border border-gray-700 hover:border-gray-500 transition-colors flex items-center justify-center gap-2"
+              >
+                <i class="fa-brands fa-github"></i>
+                View on GitHub
+              </a>
+            </div>
+          </div>
+
+          <!-- Code Preview -->
+          <div class="code-block rounded-2xl p-6 glow max-w-3xl mx-auto">
+            <div class="flex items-center gap-2 mb-4">
+              <div class="w-3 h-3 rounded-full bg-rose"></div>
+              <div class="w-3 h-3 rounded-full bg-amber"></div>
+              <div class="w-3 h-3 rounded-full bg-emerald"></div>
+              <span class="text-gray-500 text-sm ml-2 font-mono"
+                >UserService.ts</span
+              >
+            </div>
+            <pre
+              class="font-mono text-sm leading-relaxed overflow-x-auto"
+            ><code><span class="text-gray-500">// Intent is always clear</span>
+<span class="text-electric">class</span> <span class="text-cyan">UserService</span> {
+  <span class="text-emerald">public</span> <span class="text-white">getCurrentUser</span>() { }    <span class="text-gray-500">// Public API</span>
+  <span class="text-amber">protected</span> <span class="text-white">validateUser</span>() { }  <span class="text-gray-500">// For subclasses</span>
+  <span class="text-rose">private</span> <span class="text-white">cache</span>: Map;           <span class="text-gray-500">// Implementation detail</span>
+}</code></pre>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Features Section -->
+    <section class="py-24 px-6 relative">
+      <div
+        class="absolute top-1/2 left-0 w-64 h-64 bg-electric/5 rounded-full blur-3xl"
+      ></div>
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
+          Two Powerful Rules
+        </h2>
+        <p class="text-gray-400 text-center mb-16 max-w-2xl mx-auto">
+          Catch accessibility issues before they become problems
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Rule 1 -->
+          <div
+            class="card-hover p-8 rounded-2xl bg-gradient-to-br from-gray-800/50 to-gray-900/50 border border-gray-700/50"
+          >
+            <div
+              class="w-14 h-14 rounded-xl bg-electric/10 flex items-center justify-center mb-6"
+            >
+              <i class="fa-solid fa-lock text-electric text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">
+              explicit-member-accessibility
+            </h3>
+            <p class="text-gray-400 mb-6">
+              Requires explicit accessibility modifiers on all class members. No
+              more accidentally public APIs.
+            </p>
+            <div class="code-block rounded-lg p-4">
+              <pre
+                class="font-mono text-sm"
+              ><code><span class="text-gray-500">// ❌ Error: Missing accessibility</span>
+<span class="text-white">name</span>: string;
+
+<span class="text-gray-500">// ✅ Explicit and clear</span>
+<span class="text-emerald">public</span> <span class="text-white">name</span>: string;</code></pre>
+            </div>
+          </div>
+
+          <!-- Rule 2 -->
+          <div
+            class="card-hover p-8 rounded-2xl bg-gradient-to-br from-gray-800/50 to-gray-900/50 border border-gray-700/50"
+          >
+            <div
+              class="w-14 h-14 rounded-xl bg-cyan/10 flex items-center justify-center mb-6"
+            >
+              <i
+                class="fa-solid fa-arrow-down-wide-short text-cyan text-2xl"
+              ></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">
+              member-accessibility-order
+            </h3>
+            <p class="text-gray-400 mb-6">
+              Enforces consistent ordering: public → protected → private. Makes
+              classes easier to navigate.
+            </p>
+            <div class="code-block rounded-lg p-4">
+              <pre
+                class="font-mono text-sm"
+              ><code><span class="text-gray-500">// ✅ Correct order</span>
+<span class="text-emerald">public</span> <span class="text-white">api</span>() { }
+<span class="text-amber">protected</span> <span class="text-white">hook</span>() { }
+<span class="text-rose">private</span> <span class="text-white">impl</span>() { }</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Installation Section -->
+    <section id="installation" class="py-24 px-6 bg-gray-900/50">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
+          Quick Installation
+        </h2>
+        <p class="text-gray-400 text-center mb-16 max-w-2xl mx-auto">
+          Get up and running in under a minute
+        </p>
+
+        <div class="max-w-3xl mx-auto space-y-8">
+          <!-- Step 1 -->
+          <div class="flex gap-6">
+            <div
+              class="w-10 h-10 rounded-full bg-electric flex items-center justify-center flex-shrink-0 font-bold"
+            >
+              1
+            </div>
+            <div class="flex-1">
+              <h3 class="text-lg font-semibold mb-3">Install the package</h3>
+              <div class="code-block rounded-lg p-4">
+                <pre
+                  class="font-mono text-sm"
+                ><code><span class="text-cyan">pnpm</span> add -D @pegasusheavy/eslint-typescript-access</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="flex gap-6">
+            <div
+              class="w-10 h-10 rounded-full bg-electric flex items-center justify-center flex-shrink-0 font-bold"
+            >
+              2
+            </div>
+            <div class="flex-1">
+              <h3 class="text-lg font-semibold mb-3">
+                Add to your ESLint config
+              </h3>
+              <div class="code-block rounded-lg p-4">
+                <pre
+                  class="font-mono text-sm overflow-x-auto"
+                ><code><span class="text-gray-500">// eslint.config.js</span>
+<span class="text-electric">import</span> tsAccess <span class="text-electric">from</span> <span class="text-emerald">"@pegasusheavy/eslint-typescript-access"</span>;
+
+<span class="text-electric">export default</span> [
+  tsAccess.configs.<span class="text-cyan">recommended</span>,
+  <span class="text-gray-500">// ... your other configs</span>
+];</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="flex gap-6">
+            <div
+              class="w-10 h-10 rounded-full bg-emerald flex items-center justify-center flex-shrink-0"
+            >
+              <i class="fa-solid fa-check"></i>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-lg font-semibold mb-3">You're all set!</h3>
+              <p class="text-gray-400">
+                ESLint will now enforce explicit access modifiers and proper
+                ordering on all your TypeScript classes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Section -->
+    <section class="py-24 px-6">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
+          Why Explicit Modifiers?
+        </h2>
+        <p class="text-gray-400 text-center mb-16 max-w-2xl mx-auto">
+          TypeScript defaults to public, but implicit isn't always better
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="text-center">
+            <div
+              class="w-16 h-16 rounded-2xl bg-electric/10 flex items-center justify-center mx-auto mb-6"
+            >
+              <i class="fa-solid fa-eye text-electric text-2xl"></i>
+            </div>
+            <h3 class="text-lg font-semibold mb-3">Clear Intent</h3>
+            <p class="text-gray-400">
+              Is a member public intentionally or by accident? Explicit
+              modifiers make intent obvious.
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div
+              class="w-16 h-16 rounded-2xl bg-cyan/10 flex items-center justify-center mx-auto mb-6"
+            >
+              <i class="fa-solid fa-shield text-cyan text-2xl"></i>
+            </div>
+            <h3 class="text-lg font-semibold mb-3">API Safety</h3>
+            <p class="text-gray-400">
+              Prevent private implementation details from accidentally becoming
+              part of your public API.
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div
+              class="w-16 h-16 rounded-2xl bg-emerald/10 flex items-center justify-center mx-auto mb-6"
+            >
+              <i class="fa-solid fa-code-compare text-emerald text-2xl"></i>
+            </div>
+            <h3 class="text-lg font-semibold mb-3">Better Reviews</h3>
+            <p class="text-gray-400">
+              Code reviewers can immediately see accessibility intent without
+              checking surrounding context.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t border-gray-800">
+      <div
+        class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="w-8 h-8 rounded-lg bg-gradient-to-br from-electric to-cyan flex items-center justify-center"
+          >
+            <i class="fa-solid fa-shield-halved text-white text-sm"></i>
+          </div>
+          <span class="text-gray-400">MIT © Pegasus Heavy Industries LLC</span>
+        </div>
+        <div class="flex items-center gap-6">
+          <a
+            href="https://github.com/pegasusheavy/eslint-typescript-access"
+            class="text-gray-400 hover:text-white transition-colors"
+          >
+            GitHub
+          </a>
+          <a
+            href="https://www.npmjs.com/package/@pegasusheavy/eslint-typescript-access"
+            class="text-gray-400 hover:text-white transition-colors"
+          >
+            npm
+          </a>
+          <a
+            href="https://github.com/pegasusheavy/eslint-typescript-access/blob/main/CHANGELOG.md"
+            class="text-gray-400 hover:text-white transition-colors"
+          >
+            Changelog
+          </a>
+          <a
+            href="https://github.com/pegasusheavy/eslint-typescript-access/blob/main/CONTRIBUTING.md"
+            class="text-gray-400 hover:text-white transition-colors"
+          >
+            Contributing
+          </a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
