@@ -1,0 +1,41 @@
+# @pegasusheavy/eslint-typescript-access
+
+> An ESLint plugin that enforces explicit access modifiers and accessibility ordering on TypeScript class members.
+
+This plugin provides two ESLint rules for TypeScript projects: one that requires explicit `public`, `protected`, or `private` modifiers on all class members, and another that enforces member ordering by visibility level. It eliminates ambiguity about whether a member is public intentionally or by accident, prevents API surface creep, and makes classes easier to navigate. Built for ESLint 9 flat config with recommended and strict presets.
+
+## Links
+
+- [Documentation](https://pegasusheavy.github.io/eslint-typescript-access/)
+- [GitHub Repository](https://github.com/pegasusheavy/eslint-typescript-access)
+- [npm Package](https://www.npmjs.com/package/@pegasusheavy/eslint-typescript-access)
+
+## Key Features
+
+- Require explicit access modifiers (`public`, `protected`, `private`) on all class members
+- Enforce member ordering by visibility (public -> protected -> private, or custom order)
+- Per-member-type overrides (constructors, methods, properties, parameter properties, accessors)
+- Optional `groupByKind` mode to check ordering within each member kind separately
+- Built for ESLint 9 flat config with first-class support
+- Includes `recommended` and `strict` preset configurations
+- Highly configurable with `no-public` mode to disallow explicit `public`
+
+## Installation
+
+```bash
+pnpm add -D @pegasusheavy/eslint-typescript-access
+# or
+npm install -D @pegasusheavy/eslint-typescript-access
+```
+
+## Quick Start
+
+```js
+// eslint.config.js
+import tsAccessPlugin from "@pegasusheavy/eslint-typescript-access";
+
+export default [
+  // Use the recommended preset
+  tsAccessPlugin.configs.recommended,
+];
+```
