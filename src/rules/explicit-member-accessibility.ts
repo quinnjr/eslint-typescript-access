@@ -20,7 +20,7 @@ type MessageIds = "missingAccessibility" | "unwantedPublicAccessibility";
 
 const createRule = ESLintUtils.RuleCreator(
   (name) =>
-    `https://github.com/pegasusheavy/eslint-typescript-access/blob/main/docs/rules/${name}.md`
+    `https://github.com/quinnjr/eslint-typescript-access/blob/main/docs/rules/${name}.md`
 );
 
 type NodeWithKey =

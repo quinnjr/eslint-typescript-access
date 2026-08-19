@@ -1,4 +1,4 @@
-# Contributing to @pegasusheavy/eslint-typescript-access
+# Contributing to eslint-typescript-access
 
 Thank you for your interest in contributing! This document provides guidelines and instructions for contributing to this project.
 
@@ -187,7 +187,7 @@ type MessageIds = "yourMessageId";
 
 const createRule = ESLintUtils.RuleCreator(
   (name) =>
-    `https://github.com/pegasusheavy/eslint-typescript-access/blob/main/docs/rules/${name}.md`
+    `https://github.com/quinnjr/eslint-typescript-access/blob/main/docs/rules/${name}.md`
 );
 
 export const yourRuleName = createRule<Options, MessageIds>({

@@ -1,4 +1,4 @@
-# @pegasusheavy/eslint-typescript-access
+# eslint-typescript-access
 
 An ESLint plugin that enforces explicit access modifiers and accessibility ordering on TypeScript class members.
 
@@ -12,15 +12,15 @@ An ESLint plugin that enforces explicit access modifiers and accessibility order
 ## Installation
 
 ```bash
-pnpm add -D @pegasusheavy/eslint-typescript-access
+pnpm add -D eslint-typescript-access
 ```
 
 ```bash
-npm install -D @pegasusheavy/eslint-typescript-access
+npm install -D eslint-typescript-access
 ```
 
 ```bash
-yarn add -D @pegasusheavy/eslint-typescript-access
+yarn add -D eslint-typescript-access
 ```
 
 ## Usage
@@ -29,16 +29,16 @@ yarn add -D @pegasusheavy/eslint-typescript-access
 
 ```js
 // eslint.config.js
-import tsAccessPlugin from "@pegasusheavy/eslint-typescript-access";
+import tsAccessPlugin from "eslint-typescript-access";
 
 export default [
   {
     plugins: {
-      "@pegasusheavy/typescript-access": tsAccessPlugin,
+      "typescript-access": tsAccessPlugin,
     },
     rules: {
-      "@pegasusheavy/typescript-access/explicit-member-accessibility": "error",
-      "@pegasusheavy/typescript-access/member-accessibility-order": "error",
+      "typescript-access/explicit-member-accessibility": "error",
+      "typescript-access/member-accessibility-order": "error",
     },
   },
 ];
@@ -50,7 +50,7 @@ The plugin provides two presets:
 
 ```js
 // eslint.config.js
-import tsAccessPlugin from "@pegasusheavy/eslint-typescript-access";
+import tsAccessPlugin from "eslint-typescript-access";
 
 export default [
   // Recommended: enables both rules with sensible defaults
@@ -151,7 +151,7 @@ You can customize the order to match your team's preferences:
 ```js
 // Private first
 {
-  "@pegasusheavy/typescript-access/member-accessibility-order": [
+  "typescript-access/member-accessibility-order": [
     "error",
     { order: ["private", "protected", "public"] }
   ]
@@ -179,8 +179,8 @@ class Example {
 
 ```js
 {
-  "@pegasusheavy/typescript-access/explicit-member-accessibility": "error",
-  "@pegasusheavy/typescript-access/member-accessibility-order": "error"
+  "typescript-access/explicit-member-accessibility": "error",
+  "typescript-access/member-accessibility-order": "error"
 }
 ```
 
@@ -188,7 +188,7 @@ class Example {
 
 ```js
 {
-  "@pegasusheavy/typescript-access/explicit-member-accessibility": ["error", {
+  "typescript-access/explicit-member-accessibility": ["error", {
     accessibility: "explicit",
     overrides: {
       constructors: "explicit",
@@ -198,7 +198,7 @@ class Example {
       accessors: "explicit"
     }
   }],
-  "@pegasusheavy/typescript-access/member-accessibility-order": ["error", {
+  "typescript-access/member-accessibility-order": ["error", {
     order: ["public", "protected", "private"],
     groupByKind: false
   }]
@@ -236,4 +236,4 @@ Enforcing accessibility order makes classes easier to navigate:
 
 ## License
 
-MIT © Pegasus Heavy Industries LLC
+MIT © Joseph R. Quinn

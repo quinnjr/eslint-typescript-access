@@ -28,4 +28,4 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
-Sitemap: https://pegasusheavy.github.io/eslint-typescript-access/sitemap.xml
+Sitemap: https://quinnjr.github.io/eslint-typescript-access/sitemap.xml

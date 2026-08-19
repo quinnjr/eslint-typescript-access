@@ -9,7 +9,7 @@ const rules = {
 
 const plugin = {
   meta: {
-    name: "@pegasusheavy/eslint-typescript-access",
+    name: "eslint-typescript-access",
     version: "1.0.0",
   },
   rules,
@@ -20,19 +20,19 @@ const plugin = {
 Object.assign(plugin.configs, {
   recommended: {
     plugins: {
-      "@pegasusheavy/typescript-access": plugin,
+      "typescript-access": plugin,
     },
     rules: {
-      "@pegasusheavy/typescript-access/explicit-member-accessibility": "error",
-      "@pegasusheavy/typescript-access/member-accessibility-order": "error",
+      "typescript-access/explicit-member-accessibility": "error",
+      "typescript-access/member-accessibility-order": "error",
     },
   } satisfies TSESLint.FlatConfig.Config,
   strict: {
     plugins: {
-      "@pegasusheavy/typescript-access": plugin,
+      "typescript-access": plugin,
     },
     rules: {
-      "@pegasusheavy/typescript-access/explicit-member-accessibility": [
+      "typescript-access/explicit-member-accessibility": [
         "error",
         {
           accessibility: "explicit",
@@ -45,7 +45,7 @@ Object.assign(plugin.configs, {
           },
         },
       ],
-      "@pegasusheavy/typescript-access/member-accessibility-order": [
+      "typescript-access/member-accessibility-order": [
         "error",
         {
           order: ["public", "protected", "private"],

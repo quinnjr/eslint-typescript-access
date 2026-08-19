@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Initial release of `@pegasusheavy/eslint-typescript-access`
+- Initial release of `eslint-typescript-access`
 - `explicit-member-accessibility` rule — Requires explicit `public`, `protected`, or `private` modifiers on all class members
   - Configurable per member type (constructors, methods, properties, parameter properties, accessors)
   - Supports `explicit`, `no-public`, and `off` modes
@@ -32,5 +32,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Prettier for consistent code formatting
 - Comprehensive test suite using Vitest
 
-[Unreleased]: https://github.com/pegasusheavy/eslint-typescript-access/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/pegasusheavy/eslint-typescript-access/releases/tag/v1.0.0
+[Unreleased]: https://github.com/quinnjr/eslint-typescript-access/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/quinnjr/eslint-typescript-access/releases/tag/v1.0.0

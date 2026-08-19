@@ -1,5 +1,5 @@
 {
-  "name": "@pegasusheavy/eslint-typescript-access",
+  "name": "eslint-typescript-access",
   "version": "1.0.0",
   "description": "ESLint plugin that enforces explicit access modifiers on TypeScript class members",
   "main": "dist/index.js",
@@ -24,19 +24,16 @@
     "typescript",
     "access-modifiers"
   ],
-  "author": "Pegasus Heavy Industries LLC",
+  "author": "Joseph R. Quinn",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pegasusheavy/eslint-typescript-access.git"
+    "url": "git+https://github.com/quinnjr/eslint-typescript-access.git"
   },
   "bugs": {
-    "url": "https://github.com/pegasusheavy/eslint-typescript-access/issues"
+    "url": "https://github.com/quinnjr/eslint-typescript-access/issues"
   },
-  "homepage": "https://pegasusheavy.github.io/eslint-typescript-access/",
-  "publishConfig": {
-    "access": "public"
-  },
+  "homepage": "https://quinnjr.github.io/eslint-typescript-access/",
   "packageManager": "pnpm@10.20.0",
   "peerDependencies": {
     "@typescript-eslint/utils": "^8.0.0",
