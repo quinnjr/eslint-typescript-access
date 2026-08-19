@@ -1,4 +1,4 @@
-# @pegasusheavy/eslint-typescript-access
+# eslint-typescript-access
 
 > An ESLint plugin that enforces explicit access modifiers and accessibility ordering on TypeScript class members.
 
@@ -6,9 +6,9 @@ This plugin provides two ESLint rules for TypeScript projects: one that requires
 
 ## Links
 
-- [Documentation](https://pegasusheavy.github.io/eslint-typescript-access/)
-- [GitHub Repository](https://github.com/pegasusheavy/eslint-typescript-access)
-- [npm Package](https://www.npmjs.com/package/@pegasusheavy/eslint-typescript-access)
+- [Documentation](https://quinnjr.github.io/eslint-typescript-access/)
+- [GitHub Repository](https://github.com/quinnjr/eslint-typescript-access)
+- [npm Package](https://www.npmjs.com/package/eslint-typescript-access)
 
 ## Key Features
 
@@ -23,16 +23,16 @@ This plugin provides two ESLint rules for TypeScript projects: one that requires
 ## Installation
 
 ```bash
-pnpm add -D @pegasusheavy/eslint-typescript-access
+pnpm add -D eslint-typescript-access
 # or
-npm install -D @pegasusheavy/eslint-typescript-access
+npm install -D eslint-typescript-access
 ```
 
 ## Quick Start
 
 ```js
 // eslint.config.js
-import tsAccessPlugin from "@pegasusheavy/eslint-typescript-access";
+import tsAccessPlugin from "eslint-typescript-access";
 
 export default [
   // Use the recommended preset

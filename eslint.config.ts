@@ -31,12 +31,12 @@ export default [
     plugins: {
       "import-x": importX,
       unicorn,
-      "@pegasusheavy/typescript-access": selfPlugin,
+      "typescript-access": selfPlugin,
     },
     rules: {
       // Self-plugin: enforce explicit access modifiers and ordering
-      "@pegasusheavy/typescript-access/explicit-member-accessibility": "error",
-      "@pegasusheavy/typescript-access/member-accessibility-order": "error",
+      "typescript-access/explicit-member-accessibility": "error",
+      "typescript-access/member-accessibility-order": "error",
 
       // Import rules
       "import-x/order": [

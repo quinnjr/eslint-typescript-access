@@ -25,7 +25,7 @@ type MessageIds = "incorrectOrder";
 
 const createRule = ESLintUtils.RuleCreator(
   (name) =>
-    `https://github.com/pegasusheavy/eslint-typescript-access/blob/main/docs/rules/${name}.md`
+    `https://github.com/quinnjr/eslint-typescript-access/blob/main/docs/rules/${name}.md`
 );
 
 const DEFAULT_ORDER: Accessibility[] = ["public", "protected", "private"];
